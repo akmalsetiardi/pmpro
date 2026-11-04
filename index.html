@@ -4,38 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PM Pro</title>
-    
-    <!-- Favicon Adaptif Menggunakan Gambar PNG/JPG -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
-    <svg xmlns='http://w3.org' width='100' height='100'>
-        <style>
-            image { display: none; }
-            @media (prefers-color-scheme: dark) { .dark { display: block; } }
-            @media (prefers-color-scheme: light) { .light { display: block; } }
-        </style>
-        <!-- Gambar B untuk Light Mode -->
-        <image class='light' href='https://raw.githubusercontent.com/akmalsetiardi/pmpro/refs/heads/main/Logo%20Resmi%20hitam.png' width='100' height='100'/>
-        <!-- Gambar A untuk Dark Mode -->
-        <image class='dark' href='https://raw.githubusercontent.com/akmalsetiardi/pmpro/refs/heads/main/Logo%20Resmi.png' width='100' height='100'/>
-    </svg>">
-    
+
+    <!-- Favicon default (light mode) -->
+    <link id="favicon" rel="icon" type="image/png"
+          href="https://raw.githubusercontent.com/akmalsetiardi/pmpro/refs/heads/main/Logo%20Resmi%20hitam.png">
+
+    <script>
+        (function () {
+            var base  = 'https://raw.githubusercontent.com/akmalsetiardi/pmpro/refs/heads/main/';
+            var light = base + 'Logo%20Resmi%20hitam.png'; // logo hitam untuk tema terang
+            var dark  = base + 'Logo%20Resmi.png';         // logo terang untuk tema gelap
+
+            var mq   = window.matchMedia('(prefers-color-scheme: dark)');
+            var link = document.getElementById('favicon');
+
+            function updateFavicon() {
+                link.href = mq.matches ? dark : light;
+            }
+
+            updateFavicon();
+            // Ikut berubah saat tema browser/OS diganti
+            if (mq.addEventListener) mq.addEventListener('change', updateFavicon);
+            else mq.addListener(updateFavicon); // browser lama
+        })();
+    </script>
+
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-
     <iframe src="https://script.google.com/macros/s/AKfycbyakHj7o5qTwGZx1BqzHCbwnyM8rtOhGTKTw9zoFvkZzyR1-Z_4252h8nS1bkUUnM3c/exec"></iframe>
-
 </body>
 </html>
